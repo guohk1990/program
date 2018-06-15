@@ -1,0 +1,22 @@
+#! /bin/bash
+
+read -p "please input line:" line
+#i=*的个数 s=空格个数 l=当前行数
+[ $? -ne 0 ] && exit
+
+for l in `seq 1 $line`;do
+    for s in `seq 1 $[$line-$1]`;do
+        echo -en " "
+    done
+    for i in `seq 1 $[2*$1-1]`;do
+        if [ $i -eq 1 ];then
+            color=$[RANDOM%7+31]
+            echo -en "\e[1;{color};5m*\e[0m"
+        elif [ $i -eq $[$1*2-1];then
+            echo -en "\e[1;${color};5m*\e[0m"
+        else
+            echo -en "*"
+        fi
+    done
+    echo
+done
